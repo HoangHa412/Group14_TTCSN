@@ -22,7 +22,7 @@ public class AdminController {
 		if ("admin".equals(username) && "admin".equals(password)) {
 			return "admin/index"; // Trả về trang quản trị
 		}
-		return "redirect:/admin/logon"; // Chuyển hướng đến trang đăng nhập
+		return "redirect:/admin/login"; // Chuyển hướng đến trang đăng nhập
 	}
 
 	@GetMapping("/login")
