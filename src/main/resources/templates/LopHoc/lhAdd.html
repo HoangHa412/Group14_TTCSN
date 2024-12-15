@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+<!-- header  -->
+<div th:replace="admin/fragments/header :: header"></div>
+  <!-- =============================================== -->
+  <!-- Left side column. contains the sidebar -->
+<div th:replace="admin/fragments/sidebar :: sidebar"></div>
+  <!-- =============================================== -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Blank page
+        <small>it all starts here</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <h1>Thêm Lớp Học</h1>
+     <form th:action="@{/lophoc/add}" th:object="${lopHoc}" method="post">
+                <div>
+            <label for="tenLopHoc">Tên Lớp Học:</label>
+            <input type="text" id="tenLopHoc" name="tenLopHoc" th:value="${lopHoc.tenLopHoc}" required />
+        </div>
+        <div>
+            <label for="diaChi">Địa Chỉ:</label>
+            <input type="text" id="diaChi" name="diaChi" th:value="${lopHoc.diaChi}" required />
+        </div>
+        <div>
+            <label for="maKhoaHoc">Khóa Học:</label>
+            <select id="maKhoaHoc" name="maKhoaHoc">
+                <option value="" disabled selected>Chọn Khóa Học</option>
+                <option th:each="khoaHoc : ${khoaHocs}" 
+                        th:value="${khoaHoc.maKhoaHoc}" 
+                        th:text="${khoaHoc.tenKhoaHoc}">
+                </option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Thêm</button>
+            <a href="/lophoc">Hủy</a>
+        </div>
+    </form>
+
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+<div th:replace="admin/fragments/footer :: footer"></div>
+
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/jquery-ui.js}"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js/adminlte.min.js}"></script>
+<script th:src="@{/assets/js/dashboard.js}"></script>
+<script th:src="@{/assets/js/function.js}"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+	<!-- Site wrapper -->
+	<div class="wrapper">
+		<!-- header  -->
+		<div th:replace="admin/fragments/header :: header"></div>
+		<!-- =============================================== -->
+		<div th:replace="admin/fragments/sidebar :: sidebar"></div>
+		<!-- =============================================== -->
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					Blank page <small>it all starts here</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li><a href="#">Examples</a></li>
+					<li class="active">Blank page</li>
+				</ol>
+			</section>
+
+			<!-- Main content -->
+			<h1>Thêm Kết Quả Học Tập</h1>
+			<form th:action="@{/ketquahoctap/add}" th:object="${ketQuaHocTap}"
+				method="post">
+				<input type="hidden" th:field="*{maKetQua}" /> <label>Chọn
+					Sinh viên:</label> <select th:field="*{maSinhVien}">
+					<option th:each="sinhVien : ${sinhVienList}"
+						th:value="${sinhVien.maSinhVien}" th:text="${sinhVien.hoTen}"></option>
+				</select> <label>Chọn Môn học:</label> <select th:field="*{maMonHoc}">
+					<option th:each="monHoc : ${monHocList}"
+						th:value="${monHoc.maMonHoc}" th:text="${monHoc.tenMonHoc}"></option>
+				</select> <label>Điểm:</label> <input type="number" step="0.1" min="0"
+					max="10" th:field="*{diem}" required />
+
+				<button type="submit">Cập nhật Kết quả học tập</button>
+			</form>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+		<div th:replace="admin/fragments/footer :: footer"></div>
+
+
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- jQuery 3 -->
+
+	<script th:src="@{/assets/js/jquery.min.js}"></script>
+	<script th:src="@{/assets/js/jquery-ui.js}"></script>
+	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+	<script th:src="@{/assets/js/adminlte.min.js}"></script>
+	<script th:src="@{/assets/js/dashboard.js}"></script>
+	<script th:src="@{/assets/js/function.js}"></script>
+</body>
+</html>

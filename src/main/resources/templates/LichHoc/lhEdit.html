@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+<!-- header  -->
+<div th:replace="admin/fragments/header :: header"></div>
+  <!-- =============================================== -->
+  <!-- Left side column. contains the sidebar -->
+<div th:replace="admin/fragments/sidebar :: sidebar"></div>
+  <!-- =============================================== -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Blank page
+        <small>it all starts here</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <h1>Thêm Lịch Học</h1>
+     <form th:action="@{/lichhoc/edit/{id}(id=${lichHoc.maLichHoc})}" th:object="${lichHocDTO}" method="post">
+        <input type="hidden" th:field="*{maLichHoc}"/>
+
+        <div>
+            <label for="maLopHoc">Mã Lớp Học</label>
+            <select  id="maLopHoc" name="maLophoc">
+            	<option value="" disabled selected>Chọn lớp Học</option>
+            	 <option th:each="lopHoc : ${lopHocs}"
+            	 		 th:value="${lopHoc.maLopHoc}"
+            	 		 th:text="${lopHoc.tenLopHoc}">
+            	 </option>	 
+            </select>
+        </div>	
+
+        <div>
+            <label for="maMonHoc">Mã Môn Học</label>
+            <select  id="maMonHoc" name="maMonHoc">
+            	<option value="" disabled selected>Chọn Môn Học</option>
+            	 <option th:each="monHoc : ${monHocs}"
+            	 		 th:value="${monHoc.maMonHoc}"
+            	 		 th:text="${monHoc.tenMonHoc}">
+            	 </option>	 
+            </select>
+        </div>	
+
+        <div>
+            <label for="maGiangVien">Mã Giảng Viên</label>
+            <select  id="maGiangVien" name="maGiangVien">
+            	<option value="" disabled selected>Chọn Giảng Viên</option>
+            	 <option th:each="giangVien : ${giangViens}"
+            	 		 th:value="${giangVien.maGiangVien}"
+            	 		 th:text="${giangVien.tenGiangVien}">
+            	 </option>	 
+            </select>
+        </div>
+
+        <div>
+            <label for="thoiGianBatDau">Thời Gian Bắt Đầu</label>
+            <input type="time" id="thoiGianBatDau" th:field="*{thoiGianBatDau}" required/>
+        </div>
+
+        <div>
+            <label for="thoiGianKetThuc">Thời Gian Kết Thúc</label>
+            <input type="time" id="thoiGianKetThuc" th:field="*{thoiGianKetThuc}" required/>
+        </div>
+
+        <div>
+            <button type="submit">Cập Nhật</button>
+        </div>
+    </form>
+
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+<div th:replace="admin/fragments/footer :: footer"></div>
+
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/jquery-ui.js}"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js/adminlte.min.js}"></script>
+<script th:src="@{/assets/js/dashboard.js}"></script>
+<script th:src="@{/assets/js/function.js}"></script>
+</body>
+</html>

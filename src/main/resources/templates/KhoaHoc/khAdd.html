@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+<!-- header  -->
+<div th:replace="admin/fragments/header :: header"></div>
+  <!-- =============================================== -->
+  <!-- Left side column. contains the sidebar -->
+<div th:replace="admin/fragments/sidebar :: sidebar"></div>
+  <!-- =============================================== -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Blank page
+        <small>it all starts here</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <h1>Thêm Khóa Học</h1>
+    <form th:action="@{/khoahoc/add}" th:object="${khoaHoc}" method="post">
+        <label for="tenKhoaHoc">Tên Khóa Học:</label>
+        <input type="text" th:field="*{tenKhoaHoc}" id="tenKhoaHoc" required />
+        <br>
+        <label for="tgBatDau">Năm Bắt Đầu:</label>
+        <input type="date" th:field="*{tgBatDau}" id="tgBatDau" required />
+        <br>
+        <label for="tgKetThuc">Năm Kết Thúc:</label>
+        <input type="date" th:field="*{tgKetThuc}" id="tgKetThuc" required />
+        <br>
+        <label for="moTa">Mô Tả:</label>
+        <textarea th:field="*{moTa}" id="moTa" required></textarea>
+        <br>
+        <button type="submit">Thêm</button>
+    </form>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+<div th:replace="admin/fragments/footer :: footer"></div>
+
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/jquery-ui.js}"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js/adminlte.min.js}"></script>
+<script th:src="@{/assets/js/dashboard.js}"></script>
+<script th:src="@{/assets/js/function.js}"></script>
+</body>
+</html>

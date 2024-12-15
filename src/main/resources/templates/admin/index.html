@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- header -->
+  <div th:replace="admin/fragments/header :: header"></div>
+  <!-- =============================================== -->
+  <!-- Left side column. contains the sidebar -->
+  <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+  <!-- =============================================== -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Blank page
+        <small>it all starts here</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <h1>Chào mừng đến trang quản trị</h1>
+      <p th:text="${message}"></p>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <div th:replace="admin/fragments/footer :: footer"></div>
+</div>
+<!-- ./wrapper -->
+<script>
+  // Hàm lấy giá trị cookie
+  function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i].trim();
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+
+  // Kiểm tra cookie đã hết hạn chưa
+  function isCookieExpired() {
+    const expiry = getCookie("expiry");
+    if (expiry) {
+      const expiryTime = parseInt(expiry, 10);
+      const currentTime = Date.now();
+      return currentTime > expiryTime; // Nếu hết hạn trả về true
+    }
+    return true; // Nếu không có cookie, coi như hết hạn
+  }
+
+  // Xử lý khi tải trang
+  window.onload = function() {
+    if (isCookieExpired()) {
+      alert("Phiên đăng nhập đã hết hạn!");
+      window.location.href = "/admin/login"; // Chuyển hướng về trang đăng nhập
+    } else {
+      console.log("Phiên đăng nhập còn hiệu lực.");
+    }
+  };
+
+</script>
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/jquery-ui.js}"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{/assets/js/adminlte.min.js}"></script>
+<script th:src="@{/assets/js/dashboard.js}"></script>
+<script th:src="@{/assets/js/function.js}"></script>
+</body>
+</html>
