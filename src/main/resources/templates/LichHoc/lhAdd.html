@@ -1,96 +1,90 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="admin/fragments/head :: head"></head>
+<head th:replace="admin/fragments/head :: head">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
-<!-- header  -->
-<div th:replace="admin/fragments/header :: header"></div>
-  <!-- =============================================== -->
-  <!-- Left side column. contains the sidebar -->
-<div th:replace="admin/fragments/sidebar :: sidebar"></div>
-  <!-- =============================================== -->
+    <!-- header  -->
+    <div th:replace="admin/fragments/header :: header"></div>
+    <!-- =============================================== -->
+    <!-- Left side column. contains the sidebar -->
+    <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+    <!-- =============================================== -->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Blank page
-        <small>it all starts here</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
-      </ol>
-    </section>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Blank page
+                <small>it all starts here</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Examples</a></li>
+                <li class="active">Blank page</li>
+            </ol>
+        </section>
 
-    <!-- Main content -->
-    <div class="form-container">
-    <h1>Thêm Lịch Học</h1>
-     <form th:action="@{/lichhoc/add}" th:object="${lichHocDTO}" method="post">
-        <input type="hidden" th:field="*{maLichHoc}"/>
+        <!-- Main content -->
+        <div class="container mt-4">
+            <section class="content-header text-center">
+                <h1>Thêm Lịch Học</h1>
+                <p class="text-muted">Vui lòng nhập thông tin bên dưới</p>
+            </section>
+            <form th:action="@{/lichhoc/add}" th:object="${lichHocDTO}" method="post">
+                <input type="hidden" th:field="*{maLichHoc}"/>
 
-        <div>
-            <label for="maLopHoc">Mã Lớp Học</label>
-            <select  id="maLopHoc" name="maLophoc">
-            	<option value="" disabled selected>Chọn lớp Học</option>
-<option th:each="lopHoc : ${lopHocs}" th:value="${lopHoc.maLopHoc}" th:text="${lopHoc.tenLopHoc}">
-</option> 
-            </select>
-        </div>	
+                <div class="form-group">
+                    <label for="maLopHoc">Mã Lớp Học</label>
+                    <select class="form-control" id="maLopHoc" name="maLophoc">
+                        <option value="" disabled selected>Chọn lớp Học</option>
+                        <option th:each="lopHoc : ${lopHocs}" th:value="${lopHoc.maLopHoc}" th:text="${lopHoc.tenLopHoc}"></option>
+                    </select>
+                </div>
 
-        <div>
-            <label for="maMonHoc">Mã Môn Học</label>
-            <select  id="maMonHoc" name="maMonHoc">
-            	<option value="" disabled selected>Chọn Môn Học</option>
-            	 <option th:each="monHoc : ${monHocs}"
-            	 		 th:value="${monHoc.maMonHoc}"
-            	 		 th:text="${monHoc.tenMonHoc}">
-            	 </option>	 
-            </select>
-        </div>	
+                <div class="form-group">
+                    <label for="maMonHoc">Mã Môn Học</label>
+                    <select class="form-control" id="maMonHoc" name="maMonHoc">
+                        <option value="" disabled selected>Chọn Môn Học</option>
+                        <option th:each="monHoc : ${monHocs}" th:value="${monHoc.maMonHoc}" th:text="${monHoc.tenMonHoc}"></option>
+                    </select>
+                </div>
 
-        <div>
-            <label for="maGiangVien">Mã Giảng Viên</label>
-            <select  id="maGiangVien" name="maGiangVien">
-            	<option value="" disabled selected>Chọn Giảng Viên</option>
-            	 <option th:each="giangVien : ${giangViens}"
-            	 		 th:value="${giangVien.maGiangVien}"
-            	 		 th:text="${giangVien.hoTen}">
-            	 </option>	 
-            </select>
+                <div class="form-group">
+                    <label for="maGiangVien">Mã Giảng Viên</label>
+                    <select class="form-control" id="maGiangVien" name="maGiangVien">
+                        <option value="" disabled selected>Chọn Giảng Viên</option>
+                        <option th:each="giangVien : ${giangViens}" th:value="${giangVien.maGiangVien}" th:text="${giangVien.hoTen}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="thoiGianBatDau">Thời Gian Bắt Đầu</label>
+                    <input type="time" class="form-control" id="thoiGianBatDau" th:field="*{thoiGianBatDau}" required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="thoiGianKetThuc">Thời Gian Kết Thúc</label>
+                    <input type="time" class="form-control" id="thoiGianKetThuc" th:field="*{thoiGianKetThuc}" required/>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary">Thêm</button>
+                    <a th:href="@{/lichhoc}" class="btn btn-danger">Hủy</a>
+                </div>
+            </form>
         </div>
-
-        <div>
-            <label for="thoiGianBatDau">Thời Gian Bắt Đầu</label>
-            <input type="time" id="thoiGianBatDau" th:field="*{thoiGianBatDau}" required/>
-        </div>
-
-        <div>
-            <label for="thoiGianKetThuc">Thời Gian Kết Thúc</label>
-            <input type="time" id="thoiGianKetThuc" th:field="*{thoiGianKetThuc}" required/>
-        </div>
-
-        <div>
-            <button type="submit">Cập Nhật</button>
-        </div>
-    </form>
-
-    <!-- /.content -->
+        <!-- /.content -->
     </div>
-  </div>
-  <!-- /.content-wrapper -->
-<div th:replace="admin/fragments/footer :: footer"></div>
-
-
+    <!-- /.content-wrapper -->
+    <div th:replace="admin/fragments/footer :: footer"></div>
 </div>
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-
 <script th:src="@{/assets/js/jquery.min.js}"></script>
 <script th:src="@{/assets/js/jquery-ui.js}"></script>
 <script th:src="@{/assets/js/bootstrap.min.js}"></script>

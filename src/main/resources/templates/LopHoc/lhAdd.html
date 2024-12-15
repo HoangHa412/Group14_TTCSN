@@ -1,70 +1,63 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="admin/fragments/head :: head"></head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
-<!-- header  -->
-<div th:replace="admin/fragments/header :: header"></div>
-  <!-- =============================================== -->
-  <!-- Left side column. contains the sidebar -->
-<div th:replace="admin/fragments/sidebar :: sidebar"></div>
-  <!-- =============================================== -->
+    <!-- Header -->
+    <div th:replace="admin/fragments/header :: header"></div>
+    <!-- Sidebar -->
+    <div th:replace="admin/fragments/sidebar :: sidebar"></div>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Blank page
-        <small>it all starts here</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
-      </ol>
-    </section>
+    <!-- Content Wrapper -->
+    <div class="content-wrapper d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="container">
+            <!-- Content Header -->
+            <section class="content-header text-center mb-4">
+                <h1 class="text-primary">Thêm Lớp Học</h1>
+                <p class="text-muted">Vui lòng nhập thông tin lớp học bên dưới</p>
+            </section>
 
-    <!-- Main content -->
-    <h1>Thêm Lớp Học</h1>
-     <form th:action="@{/lophoc/add}" th:object="${lopHoc}" method="post">
-                <div>
-            <label for="tenLopHoc">Tên Lớp Học:</label>
-            <input type="text" id="tenLopHoc" name="tenLopHoc" th:value="${lopHoc.tenLopHoc}" required />
+            <!-- Form Thêm Lớp Học -->
+            <div class="card shadow rounded p-4" style="max-width: 600px; margin: auto;">
+                <form th:action="@{/lophoc/add}" th:object="${lopHoc}" method="post">
+                    <!-- Tên Lớp Học -->
+                    <div class="mb-3">
+                        <label for="tenLopHoc" class="form-label">Tên Lớp Học:</label>
+                        <input type="text" id="tenLopHoc" name="tenLopHoc" th:value="${lopHoc.tenLopHoc}"
+                               class="form-control" required />
+                    </div>
+                    <!-- Địa Chỉ -->
+                    <div class="mb-3">
+                        <label for="diaChi" class="form-label">Địa Chỉ:</label>
+                        <input type="text" id="diaChi" name="diaChi" th:value="${lopHoc.diaChi}"
+                               class="form-control" required />
+                    </div>
+                    <!-- Khóa Học -->
+                    <div class="mb-3">
+                        <label for="maKhoaHoc" class="form-label">Khóa Học:</label>
+                        <select id="maKhoaHoc" name="maKhoaHoc" class="form-select" required>
+                            <option value="" disabled selected>Chọn Khóa Học</option>
+                            <option th:each="khoaHoc : ${khoaHocs}" 
+                                    th:value="${khoaHoc.maKhoaHoc}" 
+                                    th:text="${khoaHoc.tenKhoaHoc}">
+                            </option>
+                        </select>
+                    </div>
+                    <!-- Nút thao tác -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary me-2">Thêm</button>
+                        <a href="/lophoc" class="btn btn-danger">Hủy</a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div>
-            <label for="diaChi">Địa Chỉ:</label>
-            <input type="text" id="diaChi" name="diaChi" th:value="${lopHoc.diaChi}" required />
-        </div>
-        <div>
-            <label for="maKhoaHoc">Khóa Học:</label>
-            <select id="maKhoaHoc" name="maKhoaHoc">
-                <option value="" disabled selected>Chọn Khóa Học</option>
-                <option th:each="khoaHoc : ${khoaHocs}" 
-                        th:value="${khoaHoc.maKhoaHoc}" 
-                        th:text="${khoaHoc.tenKhoaHoc}">
-                </option>
-            </select>
-        </div>
-        <div>
-            <button type="submit">Thêm</button>
-            <a href="/lophoc">Hủy</a>
-        </div>
-    </form>
-
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-<div th:replace="admin/fragments/footer :: footer"></div>
-
-
+    </div>
+    <!-- Footer -->
+    <div th:replace="admin/fragments/footer :: footer"></div>
 </div>
-<!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-
+<!-- Scripts -->
 <script th:src="@{/assets/js/jquery.min.js}"></script>
 <script th:src="@{/assets/js/jquery-ui.js}"></script>
 <script th:src="@{/assets/js/bootstrap.min.js}"></script>

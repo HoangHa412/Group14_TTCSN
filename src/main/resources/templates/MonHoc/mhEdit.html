@@ -1,54 +1,49 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="admin/fragments/head :: head"></head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
-<!-- header  -->
-<div th:replace="admin/fragments/header :: header"></div>
-  <!-- =============================================== -->
-  <!-- Left side column. contains the sidebar -->
-<div th:replace="admin/fragments/sidebar :: sidebar"></div>
-  <!-- =============================================== -->
+    <!-- header -->
+    <div th:replace="admin/fragments/header :: header"></div>
+    <!-- =============================================== -->
+    <!-- Left side column. contains the sidebar -->
+    <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+    <!-- =============================================== -->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Blank page
-        <small>it all starts here</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
-      </ol>
-    </section>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <!-- Form Content -->
+        <div class="container">
+            <section class="content-header text-center mb-4">
+                <h1>Sửa Môn Học</h1>
+                <p class="text-muted">Vui lòng nhập thông tin môn học bên dưới</p>
+            </section>
+            <!-- Form Nhập Môn Học -->
+            <form th:action="@{/monhoc/editMonHocForm/{id}(id=${monHoc.maMonHoc})}" th:object="${monHoc}" method="post" class="bg-light p-4 rounded shadow" style="max-width: 500px; margin: auto;">
+                <div class="mb-3">
+                    <label for="tenMonHoc" class="form-label">Tên Môn Học:</label>
+                    <input type="text" id="tenMonHoc" th:field="*{tenMonHoc}" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label for="soTinChi" class="form-label">Số Tín Chỉ:</label>
+                    <input type="number" id="soTinChi" th:field="*{soTinChi}" class="form-control" required />
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Sửa</button>
+                    <a th:href="@{/monhoc}" class="btn btn-danger" >Hủy</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
 
-    <!-- Main content -->
-    <h1>Sửa Môn Học</h1>
-<form th:action="@{/monhoc/editMonHocForm/{id}(id=${monHoc.maMonHoc})}" th:object="${monHoc}" method="POST">
-        <label for="tenMonHoc">Tên Môn Học:</label>
-        <input type="text" th:field="*{tenMonHoc}"  required />
-        <br>
-        <label for="soTinChi">Số Tín Chỉ:</label>
-        <input type="number" th:field="*{soTinChi}"  required />
-        <br>
-        <button type="submit">Sửa</button>
-    </form>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-<div th:replace="admin/fragments/footer :: footer"></div>
-
-
+    <!-- Footer -->
+    <div th:replace="admin/fragments/footer :: footer"></div>
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-
+<!-- Scripts -->
 <script th:src="@{/assets/js/jquery.min.js}"></script>
 <script th:src="@{/assets/js/jquery-ui.js}"></script>
 <script th:src="@{/assets/js/bootstrap.min.js}"></script>
