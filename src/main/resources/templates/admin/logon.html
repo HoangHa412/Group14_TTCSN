@@ -19,7 +19,7 @@
     <a href="#"><b>Admin</b>LTE</a>
   </div>
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Chào mừng đến trang đăng nhập</p>
 
     <!-- Login Form -->
     <form th:action="@{/admin/login}" method="post">
@@ -40,19 +40,19 @@
           </div>
         </div>
         <div class="col-xs-4">
-          <button id="loginBtn" type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button id="loginBtn" type="submit" class="btn btn-primary btn-block btn-flat">Đăng nhập</button>
         </div>
       </div>
     </form>
 
     <!-- Error Message Display -->
     <div th:if="${param.error}" class="alert alert-danger mt-3">
-      Invalid username or password!
+      Sai tên đăng nhập hoặc mật khẩu!
     </div>
 
     <!-- Links -->
-    <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a>
+<!--    <a href="#">I forgot my password</a><br>-->
+<!--    <a href="register.html" class="text-center">Register a new membership</a>-->
   </div>
 </div>
 
