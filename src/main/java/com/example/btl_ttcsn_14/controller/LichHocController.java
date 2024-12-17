@@ -1,4 +1,4 @@
-package com.example.btl.ttcsn.controller;
+package com.example.btl_ttcsn_14.controller;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class LichHocController {
     private LichHocService lichHocService;
 
     // Hiển thị danh sách lịch học
-    @GetMapping()
+    @GetMapping
     public String listLichHoc(Model model) {
         List<LichHocDTO> lichHocList = lichHocService.getAllLichHoc();
         model.addAttribute("lichHocList", lichHocList);

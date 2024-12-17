@@ -1,65 +1,81 @@
 package com.example.btl_ttcsn_14.controller;
 
+import com.example.btl_ttcsn_14.entity.TaiKhoan;
+import com.example.btl_ttcsn_14.repository.TaiKhoanRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	@GetMapping("/admin/")
-	public String index() {
-		return "redirect:/admin/";
-	}
+
+	@Autowired
+	private TaiKhoanRepository repository;
 
 	@GetMapping("")
-	public String adminPage(@CookieValue(value = "username", defaultValue = "") String username,
-							@CookieValue(value = "password", defaultValue = "") String password
-							) {
-		// Kiểm tra thông tin đăng nhập
-		if ("admin".equals(username) && "admin".equals(password)) {
-			return "admin/index"; // Trả về trang quản trị
+	public String adminPage(@CookieValue(value = "username", required = false) String username,
+							@CookieValue(value = "password", required = false) String password) {
+		if (username != null && password != null ) {
+			return "admin/index";
 		}
-		return "redirect:/admin/login"; // Chuyển hướng đến trang đăng nhập
+		return "redirect:/admin/login";
 	}
 
 	@GetMapping("/login")
-    public String quanLySinhVien() {
-        return "admin/logon";
-    }
+	public String loginPage() {
+		return "admin/logon";
+	}
 
 	@PostMapping("/login")
 	public String login(@RequestParam String username,
 						@RequestParam String password,
 						HttpServletResponse response,
 						RedirectAttributes redirectAttributes) {
-		if ("admin".equals(username) && "admin".equals(password)) {
-			// Tạo cookie với thời gian hết hạn
+		Optional<TaiKhoan> taiKhoan = repository.findByUsernameAndPassword(username, password);
+		if (taiKhoan.isPresent()) {
 			Cookie usernameCookie = new Cookie("username", username);
 			Cookie passwordCookie = new Cookie("password", password);
 
-			// Đặt thời gian sống cho cookie (tính bằng giây)
-			int expiryTimeInSeconds = 60 * 60 * 2; // 2 giờ
+			int expiryTimeInSeconds = 60 * 60 * 2;
 			usernameCookie.setMaxAge(expiryTimeInSeconds);
 			passwordCookie.setMaxAge(expiryTimeInSeconds);
 
-			// Đặt HttpOnly và đường dẫn cookie
 			usernameCookie.setHttpOnly(true);
-			passwordCookie.setHttpOnly(true);
+			usernameCookie.setSecure(true);
 			usernameCookie.setPath("/");
+			passwordCookie.setHttpOnly(true);
+			passwordCookie.setSecure(true);
 			passwordCookie.setPath("/");
 
-			// Thêm cookie vào phản hồi
 			response.addCookie(usernameCookie);
 			response.addCookie(passwordCookie);
 
-			return "redirect:/admin"; // Chuyển hướng đến trang quản trị
+			return "redirect:/admin";
 		}
-		redirectAttributes.addAttribute("error", true);
-		return "redirect:/admin/login"; // Chuyển hướng về trang đăng nhập
+		redirectAttributes.addFlashAttribute("error", "Sai tên đăng nhập hoặc mật khẩu!");
+		return "redirect:/admin/login";
 	}
 
+	@GetMapping("/logout")
+	public String logout(HttpServletResponse response) {
+		Cookie usernameCookie = new Cookie("username", null);
+		Cookie passwordCookie = new Cookie("password", null);
 
+		usernameCookie.setMaxAge(0);
+		passwordCookie.setMaxAge(0);
+
+		usernameCookie.setPath("/");
+		passwordCookie.setPath("/");
+
+		response.addCookie(usernameCookie);
+		response.addCookie(passwordCookie);
+
+		return "redirect:/admin/login";
+	}
 }

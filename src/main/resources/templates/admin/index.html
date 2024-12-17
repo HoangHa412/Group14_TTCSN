@@ -37,40 +37,44 @@
   <div th:replace="admin/fragments/footer :: footer"></div>
 </div>
 <!-- ./wrapper -->
-<script>
-  // Hàm lấy giá trị cookie
-  function getCookie(name) {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i].trim();
-      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  }
 
-  // Kiểm tra cookie đã hết hạn chưa
-  function isCookieExpired() {
-    const expiry = getCookie("expiry");
-    if (expiry) {
-      const expiryTime = parseInt(expiry, 10);
-      const currentTime = Date.now();
-      return currentTime > expiryTime; // Nếu hết hạn trả về true
-    }
-    return true; // Nếu không có cookie, coi như hết hạn
-  }
+<!--<script>-->
+<!--  // Hàm lấy giá trị cookie-->
+<!--  function getCookie(name) {-->
+<!--    const nameEQ = name + "=";-->
+<!--    const ca = document.cookie.split(';');-->
+<!--    for (let i = 0; i < ca.length; i++) {-->
+<!--      let c = ca[i].trim();-->
+<!--      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);-->
+<!--    }-->
+<!--    return null;-->
+<!--  }-->
 
-  // Xử lý khi tải trang
-  window.onload = function() {
-    if (isCookieExpired()) {
-      alert("Phiên đăng nhập đã hết hạn!");
-      window.location.href = "/admin/login"; // Chuyển hướng về trang đăng nhập
-    } else {
-      console.log("Phiên đăng nhập còn hiệu lực.");
-    }
-  };
+<!--  // Kiểm tra cookie đã hết hạn chưa-->
+<!--  function isCookieExpired() {-->
+<!--    const expiryTimeInSeconds = parseInt(getCookie("expiry"), 10); // Thời gian sống của cookie-->
+<!--    const creationTime = parseInt(getCookie("creationTime"), 10); // Thời gian tạo cookie (Unix timestamp)-->
+<!--    const currentTime = Math.floor(Date.now() / 1000); // Thời gian hiện tại (tính bằng giây)-->
 
-</script>
+<!--    // Nếu không có cookie hoặc đã hết hạn-->
+<!--    if (!expiryTimeInSeconds || !creationTime || currentTime > (creationTime + expiryTimeInSeconds)) {-->
+<!--      return true; // Cookie hết hạn-->
+<!--    }-->
+<!--    return false; // Cookie còn hiệu lực-->
+<!--  }-->
+
+<!--  // Xử lý khi tải trang-->
+<!--  window.onload = function() {-->
+<!--    if (isCookieExpired()) {-->
+<!--      alert("Phiên đăng nhập đã hết hạn!");-->
+<!--      window.location.href = "/admin/login"; // Chuyển hướng về trang đăng nhập-->
+<!--    } else {-->
+<!--      console.log("Phiên đăng nhập còn hiệu lực.");-->
+<!--    }-->
+<!--  };-->
+
+<!--</script>-->
+
 <script th:src="@{/assets/js/jquery.min.js}"></script>
 <script th:src="@{/assets/js/jquery-ui.js}"></script>
 <script th:src="@{/assets/js/bootstrap.min.js}"></script>

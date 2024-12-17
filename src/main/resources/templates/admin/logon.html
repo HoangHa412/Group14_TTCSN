@@ -33,7 +33,7 @@
       </div>
       <div class="row">
         <div class="col-xs-8">
-          <div class="checkbox icheck">
+          <div class="checkbox icheck p-2">
             <label>
               <input type="checkbox" name="remember"> Remember Me
             </label>
@@ -46,13 +46,9 @@
     </form>
 
     <!-- Error Message Display -->
-    <div th:if="${param.error}" class="alert alert-danger mt-3">
-      Sai tên đăng nhập hoặc mật khẩu!
+    <div th:if="${error}" class="error" style="color: red">
+      <p th:text="${error}"></p>
     </div>
-
-    <!-- Links -->
-<!--    <a href="#">I forgot my password</a><br>-->
-<!--    <a href="register.html" class="text-center">Register a new membership</a>-->
   </div>
 </div>
 
