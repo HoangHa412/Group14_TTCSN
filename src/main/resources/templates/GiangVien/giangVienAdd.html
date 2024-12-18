@@ -14,31 +14,35 @@
         <div class="container">
             <!-- Content Header -->
             <section class="content-header text-center mb-4">
-                <h1>Sửa Khóa Học</h1>
-                <p class="text-muted">Vui lòng nhập thông tin khóa học bên dưới</p>
+                <h1>Thêm Giảng viên</h1>
+                <p class="text-muted">Vui lòng nhập thông tin giảng viên bên dưới</p>
             </section>
             
             <!-- Form Thêm Khóa Học -->
-            <form th:action="@{/khoahoc/edit/{id}(id=${khoaHoc.maKhoaHoc})}" th:object="${khoaHoc}" method="post" class="bg-light p-4 rounded shadow" style="max-width: 600px; margin: auto;">
+            <form th:action="@{/giangvien/add}" th:object="${giangVien}" method="post" class="bg-light p-4 rounded shadow" style="max-width: 600px; margin: auto;">
                 <div class="mb-3">
-                    <label for="tenKhoaHoc" class="form-label">Tên Khóa Học:</label>
-                    <input type="text" th:field="*{tenKhoaHoc}" id="tenKhoaHoc" class="form-control" required />
+                    <label for="hoVaTen" class="form-label">Họ và tên:</label>
+                    <input type="text" th:field="*{hoTen}" id="hoVaTen" class="form-control" required />
                 </div>
                 <div class="mb-3">
-                    <label for="tgBatDau" class="form-label">Năm Bắt Đầu:</label>
-                    <input type="date" th:field="*{tgBatDau}" id="tgBatDau" class="form-control" required />
+                    <label for="ngaySinh" class="form-label">Ngày Sinh:</label>
+                    <input type="date" th:field="*{ngaySinh}" id="ngaySinh" class="form-control" required />
                 </div>
                 <div class="mb-3">
-                    <label for="tgKetThuc" class="form-label">Năm Kết Thúc:</label>
-                    <input type="date" th:field="*{tgKetThuc}" id="tgKetThuc" class="form-control" required />
+                    <label for="gioiTinh" class="form-label">Giới Tính:</label>
+                    <input type="text" th:field="*{gioiTinh}" id="gioiTinh" class="form-control" required />
                 </div>
                 <div class="mb-3">
-                    <label for="moTa" class="form-label">Mô Tả:</label>
-                    <textarea th:field="*{moTa}" id="moTa" class="form-control" rows="4" required></textarea>
+                    <label for="diaChi" class="form-label">Địa chỉ:</label>
+                    <input th:field="*{diaChi}" id="diaChi" class="form-control" rows="4" required></input>
+                </div>
+                <div class="mb-3">
+                    <label for="soDienThoai" class="form-label">soDienThoai:</label>
+                    <input th:field="*{soDienThoai}" id="soDienThoai" class="form-control" rows="4" required></input>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Sửa</button>
-                    <a th:href="@{/khoahoc}" class="btn btn-danger">Hủy</a>
+                    <button type="submit" class="btn btn-primary">Thêm</button>
+                    <a th:href="@{/giangvien}" class="btn btn-danger">Hủy</a>
                 </div>
             </form>
         </div>

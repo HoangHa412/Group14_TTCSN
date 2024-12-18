@@ -30,40 +30,41 @@
     <!-- Main content -->
     <section class="content">
 	<div class="row">
-						<h1>Danh sách Lịch Học</h1>
+						<h1>Danh sách giảng viên</h1>
 					</div>
 
 					<div class="row">
 						<div class="col-lg-3">
- <a th:href="@{/lichhoc/add}">Thêm Lịch Học</a>
+ <a th:href="@{/giangvien/add}">Thêm giảng viên</a>
 						</div>
 					</div>
 			<div>
 					<table class="table table-striped table-bordered">
 						<thead class="table-dark">
-            <tr>
-                <th>Mã Lịch Học</th>
-                <th>Lớp Học</th>
-                <th>Môn Học</th>
-                <th>Giảng Viên</th>
-                <th>Thời Gian Bắt Đầu</th>
-                <th>Thời Gian Kết Thúc</th>
-                <th>Hành động</th>
-            </tr>
+        <tr>
+            <th>Mã Giảng Viên</th>
+            <th>Họ và tên</th>
+            <th>Ngày sinh</th>
+            <th>Giới tính</th>
+            <th>Địa chỉ</th>
+            <th>Số Điện Thoại</th>
+            <th>Hành động</th>
+        </tr>
 
 						</thead>
 
-        <tbody>
-        <tr th:each="lichHoc : ${lichHocList}">
-            <td th:text="${lichHoc.maLichHoc}"></td>
-            <td th:text="${lichHoc.lopHoc.tenLopHoc}"></td>
-            <td th:text="${lichHoc.monHoc.tenMonHoc}"></td>
-            <td th:text="${lichHoc.giangVien.hoTen}"></td>
-            <td th:text="${#dates.format(lichHoc.thoiGianBatDau, 'dd-MM-yyyy HH:mm')}"></td>
-            <td th:text="${#dates.format(lichHoc.thoiGianKetThuc, 'dd-MM-yyyy HH:mm')}"></td>
+			<tbody>
+         <tr th:each="gv : ${giangVienList}">
+            <td th:text="${gv.maGiangVien}"></td>
+            <td th:text="${gv.hoTen}"></td>
+            <td th:text="${gv.ngaySinh}"></td>
+            <td th:text="${gv.gioiTinh}"></td>
+            <td th:text="${gv.diaChi}"></td>
+            <td th:text="${gv.soDienThoai}"></td>
             <td>
-                <a th:href="@{'/lichhoc/edit/' + ${lichHoc.maLichHoc}}" class="btn btn-warning">Sửa</a>
-                <a th:href="@{'/lichhoc/delete/' + ${lichHoc.maLichHoc}}" class="btn btn-danger">Xóa</a>
+                <a th:href="@{/giangvien/edit/{id}(id=${gv.maGiangVien})}" class="btn btn-warning">Sửa</a>
+                <a th:href="@{/giangvien/delete/{id}(id=${gv.maGiangVien})}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger">Xóa</a>
+                                   
             </td>
         </tr>
         </tbody>

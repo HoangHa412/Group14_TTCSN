@@ -1,8 +1,7 @@
 package com.example.btl_ttcsn_14.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -15,33 +14,33 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "LichHoc")
+@Table(name = "lich_hoc")
 public class LichHoc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maLichHoc;
 
     @ManyToOne
-    @JoinColumn(name = "MaLopHoc", nullable = false)
+    @JoinColumn(nullable = false)
     @JsonIgnore
     private LopHoc lopHoc;
 
     @ManyToOne
-    @JoinColumn(name = "MaMonHoc", nullable = false)
+    @JoinColumn( nullable = false)
     private MonHoc monHoc;
 
     @ManyToOne
-    @JoinColumn(name = "MaGiangVien", nullable = false)
+    @JoinColumn( nullable = false)
     private GiangVien giangVien;
 
-    @Column(name = "ThoiGianBatDau", nullable = false)
-    private LocalDateTime thoiGianBatDau;
+    @Column( nullable = false)
+    private LocalDate thoiGianBatDau;
 
-    @Column(name = "ThoiGianKetThuc", nullable = false)
-    private LocalDateTime thoiGianKetThuc;
+    @Column( nullable = false)
+    private LocalDate thoiGianKetThuc;
 
-	public LichHoc(int maLichHoc, LopHoc lopHoc, MonHoc monHoc, GiangVien giangVien, LocalDateTime thoiGianBatDau,
-			LocalDateTime thoiGianKetThuc) {
+	public LichHoc(int maLichHoc, LopHoc lopHoc, MonHoc monHoc, GiangVien giangVien, LocalDate thoiGianBatDau,
+				   LocalDate thoiGianKetThuc) {
 		super();
 		this.maLichHoc = maLichHoc;
 		this.lopHoc = lopHoc;
@@ -91,7 +90,7 @@ public class LichHoc {
 		return this.getThoiGianBatDau();
 	}
 
-	public void setThoiGianBatDau(LocalDateTime thoiGianBatDau) {
+	public void setThoiGianBatDau(LocalDate thoiGianBatDau) {
 		this.thoiGianBatDau = thoiGianBatDau;
 	}
 
@@ -99,7 +98,7 @@ public class LichHoc {
 		return this.getThoiGianKetThuc();
 	}
 
-	public void setThoiGianKetThuc(LocalDateTime thoiGianKetThuc) {
+	public void setThoiGianKetThuc(LocalDate thoiGianKetThuc) {
 		this.thoiGianKetThuc = thoiGianKetThuc;
 	}
     

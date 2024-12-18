@@ -3,6 +3,7 @@ package com.example.btl_ttcsn_14.controller;
 import com.example.btl_ttcsn_14.entity.TaiKhoan;
 import com.example.btl_ttcsn_14.repository.TaiKhoanRepository;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,11 @@ public class AdminController {
 	}
 
 	@GetMapping("/login")
-	public String loginPage() {
+	public String loginPage(HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null){
+			return "redirect:/admin";
+		}
 		return "admin/logon";
 	}
 

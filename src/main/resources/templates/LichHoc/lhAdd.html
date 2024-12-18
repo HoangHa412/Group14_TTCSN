@@ -41,7 +41,7 @@
                     <label for="maLopHoc">Mã Lớp Học</label>
                     <select class="form-control" id="maLopHoc" name="maLophoc">
                         <option value="" disabled selected>Chọn lớp Học</option>
-                        <option th:each="lopHoc : ${lopHocs}" th:value="${lopHoc.maLopHoc}" th:text="${lopHoc.tenLopHoc}"></option>
+                        <option th:each="lopHoc : ${lopHocList}" th:value="${lopHoc.maLopHoc}" th:text="${lopHoc.maLopHoc}"></option>
                     </select>
                 </div>
 
@@ -49,7 +49,7 @@
                     <label for="maMonHoc">Mã Môn Học</label>
                     <select class="form-control" id="maMonHoc" name="maMonHoc">
                         <option value="" disabled selected>Chọn Môn Học</option>
-                        <option th:each="monHoc : ${monHocs}" th:value="${monHoc.maMonHoc}" th:text="${monHoc.tenMonHoc}"></option>
+                        <option th:each="monHoc : ${monHocList}" th:value="${monHoc.maMonHoc}" th:text="${monHoc.maMonHoc}"></option>
                     </select>
                 </div>
 
@@ -57,7 +57,7 @@
                     <label for="maGiangVien">Mã Giảng Viên</label>
                     <select class="form-control" id="maGiangVien" name="maGiangVien">
                         <option value="" disabled selected>Chọn Giảng Viên</option>
-                        <option th:each="giangVien : ${giangViens}" th:value="${giangVien.maGiangVien}" th:text="${giangVien.hoTen}"></option>
+                        <option th:each="giangVien : ${maGiangVienList}" th:value="${giangVien.maGiangVien}" th:text="${giangVien.maGiangVien}"></option>
                     </select>
                 </div>
 
